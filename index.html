@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Calendar Based</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Manager</h1>
+            <button id="addTaskBtn" class="btn-primary">+ Add Task</button>
+        </header>
+
+        <div class="dashboard">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="todayTasks">0</h3>
+                    <p>Today</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="weekTasks">0</h3>
+                    <p>This Week</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Pending</p>
+                </div>
+                <div class="stat-card overdue">
+                    <h3 id="overdueTasks">0</h3>
+                    <p>Overdue</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+                <select id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <div class="view-toggle">
+                    <button id="monthView" class="active">Month</button>
+                    <button id="weekView">Week</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth">&lt;</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <div id="calendar" class="calendar"></div>
+        </div>
+
+        <div class="upcoming-tasks">
+            <h3>Upcoming Tasks</h3>
+            <div id="upcomingList"></div>
+        </div>
+
+        <div class="daily-summary">
+            <div class="summary-header">
+                <h3>Daily Summary</h3>
+                <input type="date" id="summaryDate" />
+                <button id="generateSummary" class="btn-primary">Generate Summary</button>
+            </div>
+            <div id="summaryContent">
+                <p style="color: #90a4ae; font-style: italic;">Select a date and click "Generate Summary" to view your daily task summary.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add Task</h2>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                <div class="form-group">
+                    <label for="client">Client:</label>
+                    <input type="text" id="client" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDesc">Task Description:</label>
+                    <textarea id="taskDesc" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select id="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status">
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Task</button>
+                    <button type="button" id="deleteTask" class="btn-danger" style="display:none;">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
